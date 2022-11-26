@@ -4,10 +4,14 @@ class OtpAutoFillViewManager: RCTViewManager {
     override func view() -> (OtpAutoFillView) {
         return OtpAutoFillView()
     }
+
+    override static func requiresMainQueueSetup() -> Bool {
+        return true
+    }
 }
 
 class OtpAutoFillView : UIView, UITextFieldDelegate {
-    
+
     var textField: UITextField!
 
     @objc var color: String = "#000000" {
@@ -40,12 +44,12 @@ class OtpAutoFillView : UIView, UITextFieldDelegate {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
-    
+
     func setupView() {
         // Text field configs
         textField = UITextField()
@@ -78,14 +82,14 @@ class OtpAutoFillView : UIView, UITextFieldDelegate {
         let currentString: NSString = (textField.text ?? "") as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-        
+
         // Call the onComplete event when OTP has been entered
         if (newString.length == length.intValue) {
             if onComplete != nil {
                 onComplete!(["code": newString])
             }
         }
-        
+
         return newString.length <= length.intValue
     }
 
