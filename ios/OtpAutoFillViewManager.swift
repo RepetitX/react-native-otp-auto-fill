@@ -20,7 +20,7 @@ class OtpAutoFillView : UIView, UITextFieldDelegate {
         }
     }
 
-    @objc var space: NSNumber = 28.0 {
+    @objc var space: CGFloat = 28.0 {
         didSet {
             textField.defaultTextAttributes.updateValue(space, forKey: NSAttributedString.Key.kern)
         }
@@ -28,7 +28,7 @@ class OtpAutoFillView : UIView, UITextFieldDelegate {
 
     @objc var fontSize: NSNumber = 24.0 {
         didSet {
-            textField.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .heavy)
+            textField.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .regular)
         }
     }
 
